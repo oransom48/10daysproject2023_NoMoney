@@ -1,0 +1,20 @@
+{% extends "master.html" %}
+
+{% block title %}
+    NoMoney shop
+{% endblock %}
+
+
+{% block content %}
+    <h1>NoMoney</h1>
+
+    <h3>Product List</h3>
+    
+    <ul>
+        {% for x in mygoods %}
+            <!-- <li><a href="details/{{ x.id }}">{{ x.goodsname }}</a></li> -->
+            <li><a href="{% url 'details' x.id %}">{{ x.goodsname }}</a></li>
+        {% endfor %}
+    </ul>
+  
+{% endblock %}

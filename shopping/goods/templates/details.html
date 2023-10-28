@@ -12,7 +12,7 @@
 
     <form method="post" action="{% url 'add_to_cart' goods.id %}">
         {% csrf_token %}
-        <input type="number" name="integerfield" min="0">
+        <input type="number" name="integerfield" min="0" value= {{cart_item.quantity}}>
         <input type="submit" value="ADD TO CART">
     </form>
 

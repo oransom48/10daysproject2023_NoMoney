@@ -14,6 +14,18 @@ class SignUpView(generic.CreateView):
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
 
+# main page
+def main(request):
+    return render(request, 'main.html')
+
+def productlist(request):
+    mygoods = Goods.objects.all().values()
+    template = loader.get_template('productlist.html')
+    context = {
+        'mygoods': mygoods,
+    }
+    return HttpResponse(template.render(context, request))
+
 def searched(request):
     if request.method == 'POST':
         keyword = request.POST.get('textfield', None)
@@ -33,8 +45,10 @@ def searched(request):
 @login_required
 def details(request, product_id):
     goods = Goods.objects.get(id=product_id)
+    cart_item = Cart.objects.filter(user=request.user, product_id=product_id).first()
     context = {
         "goods": goods,
+        "cart_item": cart_item,
     }
     return render(request, "details.html", context)
 
@@ -64,7 +78,7 @@ def add_to_cart(request, product_id):
                                 sum_price=amount*product_price)
             messages.success(request, "Item added to your cart.")
 
-    return redirect("main")
+    return redirect("productlist")
 
 @login_required
 def remove_from_cart(request, item_id):
@@ -153,14 +167,5 @@ def order_detail(request, ordered):
     template = loader.get_template('shop/order_detail.html')
     context = {
         'orderdetail': orderdetail
-    }
-    return HttpResponse(template.render(context, request))
-
-# main page
-def main(request):
-    mygoods = Goods.objects.all().values()
-    template = loader.get_template('main.html')
-    context = {
-        'mygoods': mygoods,
     }
     return HttpResponse(template.render(context, request))

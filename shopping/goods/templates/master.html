@@ -6,8 +6,8 @@
     <body>
 
         <div class="topnav">
-            <a href="/">HOME</a> 
-            <!-- <a href="/allproducts">PRODUCTS</a> -->
+            <a href="/">HOME</a> |
+            <a href="{% url 'productlist' %}">PRODUCTS</a>
 
             <form method="POST" action="/searched/">
                 {% csrf_token %}

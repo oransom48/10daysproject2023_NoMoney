@@ -5,6 +5,7 @@ from .views import SignUpView
 
 urlpatterns = [
     path('', views.main, name='main'),
+    path('productlist/', views.productlist, name='productlist'),
     path('<int:product_id>/', views.details, name='details'),
     path('searched/', views.searched, name='searched'),
 
