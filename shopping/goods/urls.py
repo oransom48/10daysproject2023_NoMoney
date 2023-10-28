@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from .views import SignUpView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.main, name='main'),
@@ -30,3 +32,6 @@ urlpatterns = [
     path("order_list/", views.ordered_list, name="ordered_list"),
     path("order_detail/<int:ordered>", views.order_detail, name="order_detail"),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

@@ -30,11 +30,11 @@ def searched(request):
     if request.method == 'POST':
         keyword = request.POST.get('textfield', None)
         try:
-            goods = Goods.objects.filter(goodsname__contains = keyword)
+            mygoods = Goods.objects.filter(goodsname__contains = keyword).values()
             template = loader.get_template('searched.html')
             context = {
-                'goods': goods,
-                'keyword': keyword
+                'mygoods': mygoods,
+                'keyword': keyword,
             }
             return HttpResponse(template.render(context, request))
         except Goods.DoesNotExist:
@@ -53,7 +53,8 @@ def filter(request):
 
         # checkfilter
         if filtermin=='' and filtermax=='':
-            return redirect("productlist")
+            tempmin = 0
+            tempmax = 9999999999
         elif filtermin:
             tempmin = filtermin
         elif filtermax:
@@ -82,7 +83,6 @@ def filter(request):
     else:
         return redirect("productlist")
 
-@login_required
 def details(request, product_id):
     goods = Goods.objects.get(id=product_id)
     cart_item = Cart.objects.filter(user=request.user, product_id=product_id).first()
@@ -99,12 +99,8 @@ def add_to_cart(request, product_id):
     product_price = Goods.objects.get(id=product_id).price
     
     if request.method == "POST":
-        if request.POST.get('integerfield') == '':
-            amount = 0
-            messages.error(request, "pls add amount")
-        else:
-            amount = request.POST.get('integerfield')
-            amount = float(amount)
+        amount = request.POST.get('integerfield')
+        amount = float(amount)
         if amount == 0:
             return redirect("remove_from_cart", product_id)
         if cart_item:
@@ -133,7 +129,6 @@ def remove_from_cart(request, item_id):
 
     return redirect("cart_detail")
 
-@login_required
 def cart_detail(request):
     cart_items = Cart.objects.filter(user=request.user)
     total_price = sum(item.quantity * item.price for item in cart_items)

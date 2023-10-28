@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 
 class Goods(models.Model):
+    image = models.ImageField(upload_to='image')
     goodsname = models.CharField(max_length=255)
     price = models.FloatField(null=True)
     description = models.CharField(max_length=2200, null=True)

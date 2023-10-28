@@ -28,7 +28,7 @@
 
                 
 
-                <form method="POST" action="/searched/">
+                <form method="POST" action="{% url 'searched' %}">
                     {% csrf_token %}
                     <input type="text" name="textfield">
                     <button type="submit">Search</button>

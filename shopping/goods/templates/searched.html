@@ -6,17 +6,31 @@
 
 
 {% block content %}
-  <h1>NoMoney shop</h1>
+    <h1>NoMoney</h1>
 
-  <h3>Products</h3>
+    <h3>Product List</h3>
+    
+    <form method="POST" action="{% url 'filter' %}">
+        {% csrf_token %}
+        <!-- filtermin -->
+        <input type="number" name="min" value={{filtermin}}>
+        <input type="number" name="max" value={{filtermax}}>
+        <!-- sort -->
+        <label for="cars">Sort by:</label>
+            <select name="sort" id="sorttype">
+                <option value="nameasc">A - Z</option>
+                <option value="namedsc">Z - A</option>
+                <option value="priceasc">lowest price</option>
+                <option value="pricedsc">highest price</option>
+            </select>
+        <button type="submit">Search</button>
+        <input type="submit" formmethod="GET" value="Reset">
+    </form>
 
-  <p>result(s) for {{keyword}}</p>
-  
-  <ul>
-    {% for x in goods %}
-      <!-- <li><a href="details/{{ x.id }}">{{ x.goodsname }}</a></li> -->
-      <li><a href="/{{ x.id }}">{{ x.goodsname }}</a></li>
-    {% endfor %}
-  </ul>
+    <ul>
+        {% for x in mygoods %}
+            <li> <img src="{{ x.image.path }}" alt="{{ x.goodsname }}" width="100"> <a href="{% url 'details' x.id %}">{{ x.goodsname }}</a> 💡{{ x.price }}</li>
+        {% endfor %}
+    </ul>
   
 {% endblock %}
