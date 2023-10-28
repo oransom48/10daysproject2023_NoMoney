@@ -30,7 +30,7 @@
     <ul>
         {% for x in mygoods %}
             <!-- <li><a href="details/{{ x.id }}">{{ x.goodsname }}</a></li> -->
-            <li><a href="{% url 'details' x.id %}">{{ x.goodsname }}</a></li>
+            <li><a href="{% url 'details' x.id %}">{{ x.goodsname }}</a> 💡{{ x.price }}</li>
         {% endfor %}
     </ul>
   

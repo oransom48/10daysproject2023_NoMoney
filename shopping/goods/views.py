@@ -82,6 +82,7 @@ def filter(request):
     else:
         return redirect("productlist")
 
+@login_required
 def details(request, product_id):
     goods = Goods.objects.get(id=product_id)
     cart_item = Cart.objects.filter(user=request.user, product_id=product_id).first()
@@ -98,8 +99,12 @@ def add_to_cart(request, product_id):
     product_price = Goods.objects.get(id=product_id).price
     
     if request.method == "POST":
-        amount = request.POST.get('integerfield')
-        amount = float(amount)
+        if request.POST.get('integerfield') == '':
+            amount = 0
+            messages.error(request, "pls add amount")
+        else:
+            amount = request.POST.get('integerfield')
+            amount = float(amount)
         if amount == 0:
             return redirect("remove_from_cart", product_id)
         if cart_item:
@@ -128,6 +133,7 @@ def remove_from_cart(request, item_id):
 
     return redirect("cart_detail")
 
+@login_required
 def cart_detail(request):
     cart_items = Cart.objects.filter(user=request.user)
     total_price = sum(item.quantity * item.price for item in cart_items)
