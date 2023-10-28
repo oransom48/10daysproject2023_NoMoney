@@ -1,0 +1,16 @@
+{% extends "master.html" %}
+
+{% block title %}
+    NoMoney shop
+{% endblock %}
+
+
+{% block content %}
+    <h2>Log In</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
+    </form>
+    <p>New? <a href="{% url 'signup' %}">Create an account</a></p>
+{% endblock %}

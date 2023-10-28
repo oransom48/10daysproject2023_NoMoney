@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+
+{% block title %}
+    NoMoney shop
+{% endblock %}
+
+
+{% block content %}
+  <h1>NoMoney shop</h1>
+
+  <h3>Products</h3>
+
+  <p>result(s) for {{keyword}}</p>
+  
+  <ul>
+    {% for x in goods %}
+      <!-- <li><a href="details/{{ x.id }}">{{ x.goodsname }}</a></li> -->
+      <li><a href="/{{ x.id }}">{{ x.goodsname }}</a></li>
+    {% endfor %}
+  </ul>
+  
+{% endblock %}

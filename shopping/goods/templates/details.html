@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Product details
+{% endblock %}
+
+{% block content %}
+
+    <h1>{{ goods.goodsname }}</h1>
+
+    <h2>💡{{ goods.price }}</h2>
+
+    <form method="post" action="{% url 'add_to_cart' goods.id %}">
+        {% csrf_token %}
+        <input type="number" name="integerfield" min="0">
+        <input type="submit" value="ADD TO CART">
+    </form>
+
+    <h3>product details</h3>
+    <p>{{ goods.description }}</p>
+
+{% endblock %}

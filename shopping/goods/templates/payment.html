@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+
+{% block title %}
+    payment
+{% endblock %}
+
+
+{% block content %}
+    {% load static %}
+    <img src="{% static '232869_cropped.png' %}">
+
+    <a href="{% url 'main' %}">Finish</a>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Dashboard: Ordered page
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Name</th>
+                <th>Total Price</th>
+                <th>Payment Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in orders %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.firstname }} {{ item.lastname }}</td>
+                    <td>{{ item.total_price }}</td>
+                    <td>{{ item.paid }}</td>
+                    <td><a href="{% url 'order_detail' item.id %}">Order Datail</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

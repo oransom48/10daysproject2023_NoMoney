@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+
+        <div class="topnav">
+            <a href="/">HOME</a> 
+            <!-- <a href="/allproducts">PRODUCTS</a> -->
+
+            <form method="POST" action="/searched/">
+                {% csrf_token %}
+                <input type="text" name="textfield">
+                <button type="submit">Search</button>
+            </form>
+
+            <a href="{% url 'cart_detail' %}">Shopping Cart</a>
+
+            {% if user.is_authenticated %}
+                Hi {{ user.username }}!
+                <p><a href="{% url 'logout' %}">Log Out</a></p>
+            {% else %}
+                <p>You are not logged in</p>
+                <a href="{% url 'login' %}">Log In</a>
+            {% endif %}
+        </div>
+
+        {% block content %}
+        {% endblock %}
+
+    </body>
+</html>

@@ -1,0 +1,59 @@
+{% extends "master.html" %}
+
+{% block title %}
+    Order Summary
+{% endblock %}
+
+
+{% block content %}
+    <h1>Order Summary</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+                <tr>
+                    <td>{{ item.product_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.sum_price }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+                <td>Total:</td>
+                <td>{{ total_price }}</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <form method="post" action="{% url 'save_order' %}">
+        {% csrf_token %}
+        <label for="firstname">Firstname: </label>
+        <input type="text" name="firstname">
+
+        <label for="lastname">Lastname: </label>
+        <input type="text" name="lastname">
+
+        <label for="address">Address: </label>
+        <input type="text" name="address">
+
+        <label for="tel">Tel: </label>
+        <input type="text" name="tel">
+
+        <input type="submit" value="order">
+    </form>
+
+    <a href="{% url 'cart_detail' %}">Go Back</a>
+  
+{% endblock %}
