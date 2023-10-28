@@ -1,33 +1,43 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
+        <div class="inter-font">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+            <link rel="stylesheet", href="{% static 'css/main.css' %}">
 
-        <div class="topnav">
-            <a href="/">HOME</a> |
-            <a href="{% url 'productlist' %}">PRODUCTS</a>
+            <div class="topnav">
+                <a href="/">HOME</a> 
+                <div class="topnav-right">
+                    <a href="{% url 'productlist' %}">PRODUCTS</a>
+                    <a href="{% url 'cart_detail' %}">Shopping Cart</a>
+                    {% if user.is_authenticated %}
+                        <a>Hi {{ user.username }}!</a>
+                        <a class="active" href="{% url 'logout' %}">Log Out</a>
+                    {% else %}
+                        <a class="active" href="{% url 'login' %}">Log In</a>
+                        <p class="topnav--right">You are not logged in</p>
+                    {% endif %}
+                </div>
+                
 
-            <form method="POST" action="/searched/">
-                {% csrf_token %}
-                <input type="text" name="textfield">
-                <button type="submit">Search</button>
-            </form>
 
-            <a href="{% url 'cart_detail' %}">Shopping Cart</a>
+                
 
-            {% if user.is_authenticated %}
-                Hi {{ user.username }}!
-                <p><a href="{% url 'logout' %}">Log Out</a></p>
-            {% else %}
-                <p>You are not logged in</p>
-                <a href="{% url 'login' %}">Log In</a>
-            {% endif %}
+                <form method="POST" action="/searched/">
+                    {% csrf_token %}
+                    <input type="text" name="textfield">
+                    <button type="submit">Search</button>
+                </form>
+
+
+            </div>
+            {% block content %}
+            {% endblock %}
         </div>
-
-        {% block content %}
-        {% endblock %}
-
     </body>
 </html>
