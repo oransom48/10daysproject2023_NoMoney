@@ -10,6 +10,23 @@
 
     <h3>Product List</h3>
     
+    <form method="POST" action="{% url 'filter' %}">
+        {% csrf_token %}
+        <!-- filtermin -->
+        <input type="number" name="min" value={{filtermin}}>
+        <input type="number" name="max" value={{filtermax}}>
+        <!-- sort -->
+        <label for="cars">Sort by:</label>
+            <select name="sort" id="sorttype">
+                <option value="nameasc">A - Z</option>
+                <option value="namedsc">Z - A</option>
+                <option value="priceasc">lowest price</option>
+                <option value="pricedsc">highest price</option>
+            </select>
+        <button type="submit">Search</button>
+        <input type="submit" formmethod="GET" value="Reset">
+    </form>
+
     <ul>
         {% for x in mygoods %}
             <!-- <li><a href="details/{{ x.id }}">{{ x.goodsname }}</a></li> -->

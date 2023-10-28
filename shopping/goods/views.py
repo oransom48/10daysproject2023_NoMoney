@@ -42,7 +42,46 @@ def searched(request):
     else:
         return render(request, 'master.html')
 
-@login_required
+def filter(request):
+    if request.method == 'POST':
+        filtermin = request.POST.get('min')
+        filtermax = request.POST.get('max')
+        sort = request.POST.get('sort')
+
+        tempmin = 0
+        tempmax = 9999999999
+
+        # checkfilter
+        if filtermin=='' and filtermax=='':
+            return redirect("productlist")
+        elif filtermin:
+            tempmin = filtermin
+        elif filtermax:
+            tempmax = filtermax
+        else:
+            tempmin = filtermin
+            tempmax = filtermax
+
+        # checksort
+        if sort=='nameasc':
+            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('goodsname').values()
+        elif sort=='namedsc':
+            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('-goodsname').values()
+        elif sort=='priceasc':
+            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('price').values()
+        elif sort=='pricedsc':
+            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('-price').values()
+
+        template = loader.get_template('productlist.html')
+        context = {
+            'mygoods': mygoods,
+            'filtermin':filtermin,
+            'filtermax':filtermax,
+        }
+        return HttpResponse(template.render(context, request))
+    else:
+        return redirect("productlist")
+
 def details(request, product_id):
     goods = Goods.objects.get(id=product_id)
     cart_item = Cart.objects.filter(user=request.user, product_id=product_id).first()

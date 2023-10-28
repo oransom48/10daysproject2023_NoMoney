@@ -40,16 +40,16 @@
     <form method="post" action="{% url 'save_order' %}">
         {% csrf_token %}
         <label for="firstname">Firstname: </label>
-        <input type="text" name="firstname">
+        <input type="text" name="firstname" required autofocus>
 
         <label for="lastname">Lastname: </label>
-        <input type="text" name="lastname">
+        <input type="text" name="lastname" required autofocus>
 
         <label for="address">Address: </label>
-        <input type="text" name="address">
+        <input type="text" name="address" required autofocus>
 
         <label for="tel">Tel: </label>
-        <input type="text" name="tel">
+        <input type="text" name="tel" required autofocus>
 
         <input type="submit" value="order">
     </form>

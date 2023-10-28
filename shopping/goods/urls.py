@@ -8,6 +8,7 @@ urlpatterns = [
     path('productlist/', views.productlist, name='productlist'),
     path('<int:product_id>/', views.details, name='details'),
     path('searched/', views.searched, name='searched'),
+    path('filter/', views.filter, name='filter'),
 
     # sign up & log in
     path("signup/", SignUpView.as_view(), name="signup"),
