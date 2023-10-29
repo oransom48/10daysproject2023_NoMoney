@@ -20,7 +20,7 @@
                 <tr>
                     <td>{{ item.id }}</td>
                     <td>{{ item.firstname }} {{ item.lastname }}</td>
-                    <td>{{ item.total_price }}</td>
+                    <td>💡{{ item.total_price }}</td>
                     <td>{{ item.paid }}</td>
                     <td><a href="{% url 'order_detail' item.id %}">Order Datail</a></td>
                 </tr>

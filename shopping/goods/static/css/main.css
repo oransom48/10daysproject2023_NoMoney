@@ -84,7 +84,8 @@
 
   .topnav a.active {
     position: static;
-    left: 90%;
+    margin-left: 5px;
+    left: 93%;
     top: 11%;
     background-color: #0455BF;
     color: white;

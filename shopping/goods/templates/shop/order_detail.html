@@ -8,19 +8,25 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total Price</th>
+                <th></th>
+                <th>PRODUCT</th>
+                <th>PRICE</th>
+                <th>QUANTITY</th>
+                <th>TOTAL PRICE</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             {% for item in orderdetail %}
                 <tr>
+                    <td><a href="{% url 'details' item.product_id %}"><img src="{{ item.image.url }}" alt="{{ item.goodsname }}" width="100"></a></td>
                     <td>{{ item.product_name }}</td>
+                    <td>💡{{ item.price }}</td>
                     <td>{{ item.quantity }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>{{ item.sum_price }}</td>
+                    <td>💡{{ item.sum_price }}</td>
+                    <td><a href="{% url 'details' item.product_id %}">Change Amount</a></td>
+                    <td><a href="{% url 'remove_from_cart' item.product_id %}">Remove</a></td>
                 </tr>
             {% endfor %}
         </tbody>

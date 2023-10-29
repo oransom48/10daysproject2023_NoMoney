@@ -32,10 +32,12 @@ def searched(request):
         keyword = request.POST.get('textfield', None)
         try:
             mygoods = Goods.objects.filter(goodsname__contains = keyword)
+            count = len(mygoods)
             template = loader.get_template('searched.html')
             context = {
                 'mygoods': mygoods,
                 'keyword': keyword,
+                'count':count,
             }
             return HttpResponse(template.render(context, request))
         except Goods.DoesNotExist:
@@ -135,11 +137,13 @@ def remove_from_cart(request, item_id):
 
 def cart_detail(request):
     cart_items = Cart.objects.filter(user=request.user)
+    count = len(cart_items)
     total_price = sum(item.quantity * item.price for item in cart_items)
 
     context = {
         "cart_items": cart_items,
         "total_price": total_price,
+        'count':count,
     }
 
     return render(request, "cart/cart_detail.html", context)
@@ -172,10 +176,6 @@ def save_order(request):
                                         price=item.price, 
                                         quantity=item.quantity, 
                                         sum_price=item.sum_price)
-
-        # clear cart
-        cart_item = Cart.objects.filter(user=request.user)
-        cart_item.delete()  
            
     return redirect("payment")
 
@@ -192,8 +192,21 @@ def order_summary(request):
 
 # payment
 def payment(request):
-    # template = loader.get_template('payment.html')
-    return render(request, 'payment.html')
+    cart_items = Cart.objects.filter(user=request.user)
+    total_price = sum(item.quantity * item.price for item in cart_items)
+    count = len(Cart.objects.filter(user=request.user))
+    template = loader.get_template('payment.html')
+
+    context = {
+        "total_price": total_price,
+        'count': count,
+    }
+
+    # clear cart
+    cart_item = Cart.objects.filter(user=request.user)
+    cart_item.delete()  
+
+    return HttpResponse(template.render(context, request))
 
 # (dashboard) ordered page
 @staff_member_required

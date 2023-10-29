@@ -15,7 +15,7 @@
                     <a href="/"><img src="{% static 'nomoney logo.png' %}" class="logo" style="width:270px;height:75px;"></a>
                         <div class="topnav-right">
                             <a class="active-white" href="{% url 'productlist' %}">PRODUCTS</a>
-                            <a class="active-white" href="{% url 'cart_detail' %}"> <img src="{% static 'shopping cart icon.png' %}" style="float:left;width:auto;height:16px;" class="center">Shopping Cart</a>
+                            <a class="active-white" href="{% url 'cart_detail' %}"> <img src="{% static 'shopping cart icon.png' %}" style="float:left;width:auto;height:18px;" class="center">Shopping Cart</a>
                             {% if user.is_authenticated %}
                                 <a class="active" href="{% url 'logout' %}">LOGOUT</a>
                             {% else %}

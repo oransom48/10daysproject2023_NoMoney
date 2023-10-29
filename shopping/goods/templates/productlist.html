@@ -15,12 +15,8 @@
     <form method="POST" action="{% url 'filter' %}">
         {% csrf_token %}
         <!-- filtermin -->
-        <div class="min-maxbar">
-            <input id="minQueryInput" type="number" name="min" placeholder="Min" value="{{filtermin}}" />
-            <input id="maxQueryInput" type="number" name="max" placeholder="Max" value="{{filtermax}}" />
-        </div>
-        <!-- <input type="number" name="min" value={{filtermin}}>
-        <input type="number" name="max" value={{filtermax}}> -->
+        <input id="minQueryInput" type="number" name="min" placeholder="Min" value={{filtermin}}>
+        <input id="maxQueryInput" type="number" name="max" placeholder="Max" value={{filtermax}}>
         <!-- sort -->
         <div class="label">
             <label for="sortby">Sort by:</label>
@@ -38,12 +34,11 @@
             <input type="submit" formmethod="GET" value="Reset">
         </div>
     </form>
-    <div class="product-list">
-        <ul>
-            {% for x in mygoods %}
-                <li> <img src="{{ x.image.url }}" alt="{{ x.goodsname }}" width="100"> <a href="{% url 'details' x.id %}">{{ x.goodsname }}</a> 💡{{ x.price }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+
+    <ul>
+        {% for x in mygoods %}
+            <li> <img src="{{ x.image.url }}" alt="{{ x.goodsname }}" width="100"> <a href="{% url 'details' x.id %}">{{ x.goodsname }}</a> 💡{{ x.price }}</li>
+        {% endfor %}
+    </ul>
   
 {% endblock %}

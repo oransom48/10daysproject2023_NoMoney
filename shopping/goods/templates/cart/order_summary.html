@@ -12,34 +12,32 @@
         <thead>
             <tr>
                 <th></th>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total Price</th>
+                <th>PRODUCT</th>
+                <th>PRICE</th>
+                <th>QUANTITY</th>
+                <th>TOTAL PRICE</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             {% for item in cart_items %}
                 <tr>
-                    <td><img src="{{ item.image.url }}" alt="{{ item.goodsname }}" width="100"></td>
+                    <td><a href="{% url 'details' item.product_id %}"><img src="{{ item.image.url }}" alt="{{ item.goodsname }}" width="100"></a></td>
                     <td>{{ item.product_name }}</td>
+                    <td>💡{{ item.price }}</td>
                     <td>{{ item.quantity }}</td>
-                    <td>{{ item.price }}</td>
-                    <td>{{ item.sum_price }}</td>
+                    <td>💡{{ item.sum_price }}</td>
+                    <td><a href="{% url 'details' item.product_id %}">Change Amount</a></td>
+                    <td><a href="{% url 'remove_from_cart' item.product_id %}">Remove</a></td>
                 </tr>
             {% endfor %}
         </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3"></td>
-                <td>Total:</td>
-                <td>{{ total_price }}</td>
-            </tr>
-        </tfoot>
     </table>
+    <p>Total: 💡{{ total_price }}</p>
 
-    <form method="post" action="{% url 'save_order' %}">
+    <form method="post" action="{% url 'save_order' %}" name="Address">
+        <h3>Address</h3>
         {% csrf_token %}
         <label for="firstname">Firstname: </label>
         <input type="text" name="firstname" required autofocus>
@@ -53,9 +51,9 @@
         <label for="tel">Tel: </label>
         <input type="text" name="tel" required autofocus>
 
-        <input type="submit" value="order">
+        <input type="submit" value="ORDER">
     </form>
 
-    <a href="{% url 'cart_detail' %}">Go Back</a>
+    <a href="{% url 'cart_detail' %}">BACK TO CART</a>
   
 {% endblock %}

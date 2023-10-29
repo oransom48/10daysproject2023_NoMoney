@@ -6,8 +6,13 @@
 
 
 {% block content %}
+
+    <h3>SCAN TO PURCHASE</h3>
     {% load static %}
     <img src="{% static '232869_cropped.png' %}">
 
-    <a href="{% url 'main' %}">Finish</a>
+    <p>QUANTITY : {{ count }}</p>
+    <p>TOTAL : 💡{{ total_price }}</p>
+
+    <a href="{% url 'main' %}">FINISH</a>
 {% endblock %}
