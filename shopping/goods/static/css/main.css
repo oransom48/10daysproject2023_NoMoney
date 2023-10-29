@@ -1,33 +1,41 @@
 /* font */
 
 
-.inter-font {
+.inter-font-thick {
     font-family: "Inter", sans-serif;
+    font-weight: bold;
 }
+
+.inter-font-light {
+  font-family: "Inter", sans-serif;
+  font-weight: normal;
+}
+
+
 
 
 /* /font */
 * {
   margin: 0;
   padding: 0;
+  position: sticky;
   box-sizing: border-box;
 }
 
+
 .logo {
   display: block;
+  position: sticky;
   margin-top: -25px;
   width: 50%;
   border-radius: 15px;
 }
 
-.person {
-  display: block;
-  margin-bottom: -100px;
-  width: 50%;
-}
+
 
 .center {
   display: block;
+  position: sticky;
   margin-top: 2px;
   margin-right: 5px;
   width: 50%;
@@ -35,15 +43,14 @@
 
 .topnav {
     overflow: hidden;
-    background: rgb(217,217,217);
-    background: linear-gradient(180deg, rgba(217,217,217,1) 0%, rgba(190,204,255,1) 100%);
-    background-color: #f1f1f1;
+    position: sticky;
     width: 100%;
     padding: 100px 50px;
   }
 
 
   .topnav a {
+    position: sticky;
     float: left;
     color: black;
     text-align: center;
@@ -57,26 +64,31 @@
   
   
   .topnav a.logo {
+    position: sticky;
     font-size: 25px;
     font-weight: bold;
   }
   .topnav--right {
+    position: sticky;
     text-align: right;
   }
   
 
   .topnav a:hover {
+    position: sticky;
     background-color: #ddd;
     color: black;
   }
   
 
   .topnav a.active {
+    position: sticky;
     background-color: #0455BF;
     color: white;
   }
 
   .topnav a.active-white {
+    position: sticky;
     background-color: white;
     margin-right: 10px;
     margin-left: 7px;
@@ -85,12 +97,14 @@
   }
   
   .topnav-center {
+    position: sticky;
     float: center;
     margin: auto;
     width: 11%;
   }
 
   .topnav-right {
+    position: sticky;
     float: right;
     
   }
@@ -111,6 +125,7 @@
 /* search */
 
   .searchBar {
+    position: sticky;
     width: 40%;
     float: right;
     display: flex;
@@ -119,6 +134,7 @@
   }
   
   #searchQueryInput {
+    position: sticky;
     width: 100%;
     margin-top: -40px;
     height: 2.2rem;
@@ -131,6 +147,7 @@
   }
   
   #searchQuerySubmit {
+    position: sticky;
     width: 4.5rem;
     height: 3.8rem;
     margin-top: -37px;

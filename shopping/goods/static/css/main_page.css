@@ -1,0 +1,67 @@
+body{
+    position: relative;
+    background-image: rgb(217,217,217);
+    background-image: linear-gradient(180deg, rgba(217,217,217,1) 0%, rgba(190,204,255,1) 100%);
+}
+
+
+
+.person {
+    display: block;
+    margin-top: 0;
+    top: 100;
+    left: 500;
+  }
+.person img{
+    width: 40%;
+    height: auto;
+}
+
+.NOMONEY {
+    position: relative;
+    margin-top: 0px;
+    margin-left: 0px;
+    font-family: "Inter", sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 97px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #0455BF;
+    width: 672px;
+    height: 60px;
+    top: 100px;
+    left: 151px;
+  
+  }
+
+.NOPROBLEM {
+    position: relative;
+    margin-top: 0px;
+    margin-left: -10px;
+    margin-right: 50px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    height: 48px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: right;
+    top: 110px;
+    left: 150px;
+
+}
+
+.quote {
+    position: relative;
+    margin-right: 50px;
+    font-family: "Inter", sans-serif;
+    font-weight: normal;
+    top: 140px;
+    left: 155px;
+}
+.quote h3{
+    font-size: 25px;
+    margin-bottom: 20px;
+}

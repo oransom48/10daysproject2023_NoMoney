@@ -1,17 +1,30 @@
 {% extends "master.html" %}
 {% load static %}
 
+
 {% block title %}
     Home Page
 {% endblock %}
 
 {% block pic %}
-<img src="{% static 'happy woman.png' %}" style="float:right;width:30%;" class="person">
+<div class="person">
+<img src="{% static 'happy woman.png' %}" style="float:right;">
+</div>
 {% endblock %}
 
 {% block content %}
-    <h1>Welcome to NoMoney shop</h1>
-
+    <link rel="stylesheet", href="{% static 'css/main_page.css' %}">
+    <div class="NOMONEY">
+    <h1>NOMONEY</h1>
+    </div>
+    <div class="NOPROBLEM">
+    <h1>N O P R O B L E M</h1>
+    </div>
+    <div class="quote">
+        <h3>Everything’s here for you to possess</h3>
+        <h3>with just a click of your</h3>
+        <h3>mouse</h3>
+    </div>
+    
     <p>start shopping <a href="{% url 'productlist' %}">HERE</a></p>
-  
 {% endblock %}
