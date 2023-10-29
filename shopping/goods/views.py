@@ -4,6 +4,7 @@ from django.template import loader
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Q
 from django.views import generic
 from django.urls import path, reverse_lazy
@@ -86,7 +87,7 @@ def filter(request):
 
 def details(request, product_id):
     goods = Goods.objects.get(id=product_id)
-    cart_item = Cart.objects.get(user=request.user, product_id=product_id)
+    cart_item = Cart.objects.filter(user=request.user, product_id=product_id).first()
     context = {
         "goods": goods,
         "cart_item": cart_item,
@@ -195,6 +196,7 @@ def payment(request):
     return render(request, 'payment.html')
 
 # (dashboard) ordered page
+@staff_member_required
 def ordered_list(request):
     orders = Ordered.objects.all()
     # product_order = Product.objects.all()
@@ -205,6 +207,7 @@ def ordered_list(request):
     }
     return HttpResponse(template.render(context, request))
 
+@staff_member_required
 def order_detail(request, ordered):
     orderdetail = Product.objects.filter(ordered=ordered)
     template = loader.get_template('shop/order_detail.html')
