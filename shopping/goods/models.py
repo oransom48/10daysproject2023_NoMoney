@@ -12,6 +12,7 @@ class Goods(models.Model):
         return f"{self.goodsname}"
 
 class Cart(models.Model):
+    image = models.ImageField(upload_to='image')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     product_id = models.IntegerField(null=True)
     product_name = models.CharField(max_length=255, null=True)
@@ -29,6 +30,7 @@ class Cart(models.Model):
 # for ordered page
 # I use ManyToMany Relationship, which likes Composition (or Aggregation? I'm not sure) in OOP.
 class Product(models.Model):
+    image = models.ImageField(upload_to='image')
     product_id = models.IntegerField(null=True)
     product_name = models.CharField(max_length=255, null=True)
     price = models.FloatField(null=True)
