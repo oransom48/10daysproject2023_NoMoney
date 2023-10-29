@@ -14,6 +14,22 @@
     font-weight: normal;
 }
 
+.label-searched{
+    position: static;
+    margin-left: 38%;
+    margin-top: -1.8%;
+    font-family: "Inter", sans-serif;
+    font-weight: normal;
+}
+
+.label-searched select{
+    border: 1px solid #0455BF;
+    border-radius: 5px;
+    width: 10%;
+    font-family: "Inter", sans-serif;
+    font-weight: normal;
+}
+
 .list-product{
     position: static;
     font-family: "Inter", sans-serif;
@@ -29,6 +45,18 @@
 .reset{
     position: static;
     margin-left: 47%;
+    margin-top: -1.5%;
+}
+
+.submit-searched{
+    position: static;
+    margin-left: 49.5%;
+    margin-top: -1.5%;
+}
+
+.reset-searched{
+    position: static;
+    margin-left: 53.3%;
     margin-top: -1.5%;
 }
 
