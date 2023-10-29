@@ -1,7 +1,7 @@
 .label{
-    position: fixed;
-    left: 34%;
-    top: 20%;
+    position: static;
+    margin-left: 31%;
+    margin-top: -1.8%;
     font-family: "Inter", sans-serif;
     font-weight: normal;
 }
@@ -9,36 +9,39 @@
 .label select{
     border: 1px solid #0455BF;
     border-radius: 5px;
-    width: 60%;
+    width: 10%;
     font-family: "Inter", sans-serif;
     font-weight: normal;
 }
 
-.product-list{
-    position: relative;
+.list-product{
+    position: static;
     font-family: "Inter", sans-serif;
     font-weight: normal;
 }
 
 .submit{
-    position: fixed;
-    top: 20%;
-    left: 46%;
+    position: static;
+    margin-left: 43.2%;
+    margin-top: -1.5%;
 }
 
 .reset{
-    position: fixed;
-    top: 20%;
-    left: 49.5%;
+    position: static;
+    margin-left: 47%;
+    margin-top: -1.5%;
 }
 
 .text-product-list{
-    position: fixed;
-    top: 25%;
+    position: static;
+    margin-top: 5%;
+    top: 50%;
+    font-family: "Inter", sans-serif;
+    font-weight: normal;
 }
 
 .min-maxbar{
-    position: fixed;
+    position: static;
     width: 50%;
     left: 50px;
     float: right;
@@ -48,7 +51,7 @@
 }
 
 #minQueryInput {
-    position: fixed;
+    position: static;
     width: 15%;
     left: 3%;
     top: 19.75%;
@@ -62,7 +65,7 @@
   }
 
   #maxQueryInput {
-    position: fixed;
+    position: static;
     width: 15%;
     left: 18.5%;
     top: 19.75%;
@@ -76,7 +79,7 @@
   }
 
   #min-maxQuerySubmit {
-    position: fixed;
+    position: static;
     width: 4.5rem;
     height: 3.8rem;
     margin-top: -37px;
@@ -89,3 +92,63 @@
   #min-maxQuerySubmit:hover {
     cursor: pointer;
   }
+
+/* list product */
+
+.glyphicon { margin-right:5px; }
+.thumbnail
+{
+    margin-bottom: 20px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+.item.list-group-item:nth-of-type(odd):hover,.item.list-group-item:hover
+{
+    background: #428bca;
+}
+
+.item.list-group-item .list-group-image
+{
+    margin-right: 10px;
+}
+.item.list-group-item .thumbnail
+{
+    margin-bottom: 0px;
+}
+.item.list-group-item .caption
+{
+    padding: 9px 9px 0px 9px;
+}
+.item.list-group-item:nth-of-type(odd)
+{
+    background: #eeeeee;
+}
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item img
+{
+    float: left;
+}
+.item.list-group-item:after
+{
+    clear: both;
+}
+.list-group-item-text
+{
+    margin: 0 0 11px;
+}

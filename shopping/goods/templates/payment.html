@@ -1,18 +1,27 @@
 {% extends "master.html" %}
-
+{% load static %}
 {% block title %}
     payment
 {% endblock %}
 
 
 {% block content %}
-
-    <h3>SCAN TO PURCHASE</h3>
+    <link rel="stylesheet", href="{% static 'css/payment_page.css' %}">
+    <div class="text-qr">
+        <h3>SCAN TO PURCHASE</h3>
+    </div>
     {% load static %}
-    <img src="{% static '232869_cropped.png' %}">
 
-    <p>QUANTITY : {{ count }}</p>
-    <p>TOTAL : 💡{{ total_price }}</p>
-
-    <a href="{% url 'main' %}">FINISH</a>
+    <div class="qr-pic">
+        <img src="{% static '232869_cropped.png' %}">
+    </div>
+    <div class="QUANTITY">
+        <p>QUANTITY : <h2>{{ count }}</h2></p>
+    </div>
+    <div class="TOTAL">
+        <p>TOTAL : <h2>💡{{ total_price }}</h2></p>
+    </div>
+    <div class="FINISH">
+        <a href="{% url 'main' %}">FINISH</a>
+    </div>
 {% endblock %}

@@ -1,0 +1,49 @@
+.text-qr{
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    position: static;
+    color: #6456FF; 
+    font-size: 30px;
+    line-height: 48px;
+    letter-spacing: 0em;
+    text-align: center;
+    margin-top: 7%;
+}
+
+.qr-pic{
+    position: static;
+    text-align: center;
+}
+
+.QUANTITY{
+    position: static;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    color: #939393;
+}
+
+.QUANTITY h2{
+    color: #0455BF;
+}
+
+.TOTAL{
+    position: static;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    color: #939393;
+}
+
+.TOTAL h2{
+    color: #0455BF;
+}
+
+.FINISH{
+    position: static;
+    margin-left: 47.5%;
+    margin-top: 2%;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    color: #939393;
+}
