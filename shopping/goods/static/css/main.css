@@ -1,28 +1,58 @@
 /* font */
 
 
-
 .inter-font {
-    font-family: "Inter", Bold;
+    font-family: "Inter", sans-serif;
 }
 
+
 /* /font */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logo {
+  display: block;
+  margin-top: -25px;
+  width: 50%;
+  border-radius: 15px;
+}
+
+.person {
+  display: block;
+  margin-bottom: -100px;
+  width: 50%;
+}
+
+.center {
+  display: block;
+  margin-top: 2px;
+  margin-right: 5px;
+  width: 50%;
+}
+
 .topnav {
     overflow: hidden;
+    background: rgb(217,217,217);
+    background: linear-gradient(180deg, rgba(217,217,217,1) 0%, rgba(190,204,255,1) 100%);
     background-color: #f1f1f1;
-    padding: 20px 10px;
+    width: 100%;
+    padding: 100px 50px;
   }
-  
+
 
   .topnav a {
     float: left;
     color: black;
     text-align: center;
-    padding: 12px;
+    padding: 8px;
     text-decoration: none;
-    font-size: 18px;
-    line-height: 25px;
-    border-radius: 4px;
+    font-size: 15px;
+    line-height: 20px;
+    border-radius: 8px;
+    margin-top: -28px;
   }
   
   
@@ -42,13 +72,27 @@
   
 
   .topnav a.active {
-    background-color: dodgerblue;
+    background-color: #0455BF;
     color: white;
   }
+
+  .topnav a.active-white {
+    background-color: white;
+    margin-right: 10px;
+    margin-left: 7px;
+    border: 1px solid black;
+    color: black;
+  }
   
+  .topnav-center {
+    float: center;
+    margin: auto;
+    width: 11%;
+  }
 
   .topnav-right {
     float: right;
+    
   }
   
 
@@ -64,4 +108,42 @@
   }
 
 
+/* search */
+
+  .searchBar {
+    width: 40%;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  #searchQueryInput {
+    width: 100%;
+    margin-top: -40px;
+    height: 2.2rem;
+    background: #ffffff;
+    outline: none;
+    border: 2px solid #0455BF;
+    border-radius: 8px;
+    padding: 0 3.5rem 0 1.5rem;
+    font-size: 1rem;
+  }
+  
+  #searchQuerySubmit {
+    width: 4.5rem;
+    height: 3.8rem;
+    margin-top: -37px;
+    margin-left: -3.5rem;
+    background: none;
+    border: none;
+    outline: none;
+  }
+  
+  #searchQuerySubmit:hover {
+    cursor: pointer;
+  }
+
+
+/* /search */
 
