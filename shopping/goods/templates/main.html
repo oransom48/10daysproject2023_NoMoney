@@ -1,9 +1,13 @@
 {% extends "master.html" %}
+{% load static %}
 
 {% block title %}
     Home Page
 {% endblock %}
 
+{% block pic %}
+<img src="{% static 'happy woman.png' %}" style="float:right;width:30%;" class="person">
+{% endblock %}
 
 {% block content %}
     <h1>Welcome to NoMoney shop</h1>
