@@ -15,7 +15,7 @@
                     <a href="/"><img src="{% static 'nomoney logo.png' %}" class="logo" style="width:270px;height:75px;"></a>
                         <div class="topnav-right">
                             <!-- all product -->
-                            <a href="{% url 'productlist' %}">All product</a>
+                            <a href="{% url 'productlist' %}">All Product</a>
 
                             <!-- order details (superuser and staff only) -->
                             {% if user.is_superuser or user.is_staff %}

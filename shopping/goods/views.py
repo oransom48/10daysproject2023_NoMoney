@@ -137,11 +137,13 @@ def remove_from_cart(request, item_id):
 
 def cart_detail(request):
     cart_items = Cart.objects.filter(user=request.user)
+    count = len(cart_items)
     total_price = sum(item.quantity * item.price for item in cart_items)
 
     context = {
         "cart_items": cart_items,
         "total_price": total_price,
+        'count':count,
     }
 
     return render(request, "cart/cart_detail.html", context)
