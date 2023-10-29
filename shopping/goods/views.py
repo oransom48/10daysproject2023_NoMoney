@@ -19,7 +19,7 @@ def main(request):
     return render(request, 'main.html')
 
 def productlist(request):
-    mygoods = Goods.objects.all().values()
+    mygoods = Goods.objects.all()
     template = loader.get_template('productlist.html')
     context = {
         'mygoods': mygoods,
@@ -30,7 +30,7 @@ def searched(request):
     if request.method == 'POST':
         keyword = request.POST.get('textfield', None)
         try:
-            mygoods = Goods.objects.filter(goodsname__contains = keyword).values()
+            mygoods = Goods.objects.filter(goodsname__contains = keyword)
             template = loader.get_template('searched.html')
             context = {
                 'mygoods': mygoods,
@@ -47,6 +47,7 @@ def filter(request):
         filtermin = request.POST.get('min')
         filtermax = request.POST.get('max')
         sort = request.POST.get('sort')
+        mygoods = Goods.objects.all()
 
         tempmin = 0
         tempmax = 9999999999
@@ -55,9 +56,9 @@ def filter(request):
         if filtermin=='' and filtermax=='':
             tempmin = 0
             tempmax = 9999999999
-        elif filtermin:
+        elif filtermin=='':
             tempmin = filtermin
-        elif filtermax:
+        elif filtermax=='':
             tempmax = filtermax
         else:
             tempmin = filtermin
@@ -65,13 +66,13 @@ def filter(request):
 
         # checksort
         if sort=='nameasc':
-            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('goodsname').values()
+            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('goodsname')
         elif sort=='namedsc':
-            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('-goodsname').values()
+            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('-goodsname')
         elif sort=='priceasc':
-            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('price').values()
+            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('price')
         elif sort=='pricedsc':
-            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('-price').values()
+            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('-price')
 
         template = loader.get_template('productlist.html')
         context = {
@@ -103,14 +104,16 @@ def add_to_cart(request, product_id):
         amount = float(amount)
         if amount == 0:
             return redirect("remove_from_cart", product_id)
-        if cart_item:
+        elif cart_item:
             cart_item.quantity = amount
             cart_item.sum_price = amount * cart_item.price
             cart_item.save()
             messages.success(request, "Item added to your cart.")
         else:
             product_name = Goods.objects.get(id=product_id).goodsname
+            image = Goods.objects.get(id=product_id).image
             Cart.objects.create(user=request.user,
+                                image=image,
                                 product_id=product_id, 
                                 product_name=product_name,
                                 price=product_price, 
@@ -159,11 +162,11 @@ def save_order(request):
                             address=address,
                             tel=tel,
                             total_price=total_price,
-                            paid=True,
                             )
         this_order.save()
         for item in in_cart:
-            this_order.products.create(product_id=item.product_id, 
+            this_order.products.create(image=item.image,
+                                        product_id=item.product_id, 
                                         product_name=item.product_name,
                                         price=item.price, 
                                         quantity=item.quantity, 

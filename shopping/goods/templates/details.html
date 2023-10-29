@@ -8,6 +8,8 @@
 
     <h1>{{ goods.goodsname }}</h1>
 
+    <img src="{{ goods.image.url }}" alt="{{ goods.goodsname }}" width="200">
+
     <h2>💡{{ goods.price }}</h2>
 
     <form method="post" action="{% url 'add_to_cart' goods.id %}">
