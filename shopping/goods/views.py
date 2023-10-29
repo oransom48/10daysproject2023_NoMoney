@@ -86,7 +86,7 @@ def filter(request):
 
 def details(request, product_id):
     goods = Goods.objects.get(id=product_id)
-    cart_item = Cart.objects.filter(user=request.user, product_id=product_id).first()
+    cart_item = Cart.objects.get(user=request.user, product_id=product_id)
     context = {
         "goods": goods,
         "cart_item": cart_item,
