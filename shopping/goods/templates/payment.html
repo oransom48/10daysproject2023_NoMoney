@@ -11,8 +11,8 @@
     {% load static %}
     <img src="{% static '232869_cropped.png' %}">
 
-    <p>QUANTITY : {{ total_price }}</p>
-    <p>TOTAL : 💡{{ count }}</p>
+    <p>QUANTITY : {{ count }}</p>
+    <p>TOTAL : 💡{{ total_price }}</p>
 
     <a href="{% url 'main' %}">FINISH</a>
 {% endblock %}
