@@ -1,0 +1,91 @@
+.label{
+    position: fixed;
+    left: 34%;
+    top: 20%;
+    font-family: "Inter", sans-serif;
+    font-weight: normal;
+}
+
+.label select{
+    border: 1px solid #0455BF;
+    border-radius: 5px;
+    width: 60%;
+    font-family: "Inter", sans-serif;
+    font-weight: normal;
+}
+
+.product-list{
+    position: relative;
+    font-family: "Inter", sans-serif;
+    font-weight: normal;
+}
+
+.submit{
+    position: fixed;
+    top: 20%;
+    left: 46%;
+}
+
+.reset{
+    position: fixed;
+    top: 20%;
+    left: 49.5%;
+}
+
+.text-product-list{
+    position: fixed;
+    top: 25%;
+}
+
+.min-maxbar{
+    position: fixed;
+    width: 50%;
+    left: 50px;
+    float: right;
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+}
+
+#minQueryInput {
+    position: fixed;
+    width: 15%;
+    left: 3%;
+    top: 19.75%;
+    height: 1.6rem;
+    background: #ffffff;
+    outline: none;
+    border: 1px solid #0455BF;
+    border-radius: 5px;
+    padding: 0 3.5rem 0 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  #maxQueryInput {
+    position: fixed;
+    width: 15%;
+    left: 18.5%;
+    top: 19.75%;
+    height: 1.6rem;
+    background: #ffffff;
+    outline: none;
+    border: 1px solid #0455BF;
+    border-radius: 5px;
+    padding: 0 3.5rem 0 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  #min-maxQuerySubmit {
+    position: fixed;
+    width: 4.5rem;
+    height: 3.8rem;
+    margin-top: -37px;
+    margin-left: -3.5rem;
+    background: none;
+    border: none;
+    outline: none;
+  }
+
+  #min-maxQuerySubmit:hover {
+    cursor: pointer;
+  }

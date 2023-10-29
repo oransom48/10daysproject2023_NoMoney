@@ -25,7 +25,7 @@
 
 .logo {
   display: block;
-  position: sticky;
+  position: fixed;
   margin-top: -25px;
   width: 50%;
   border-radius: 15px;
@@ -35,7 +35,7 @@
 
 .center {
   display: block;
-  position: sticky;
+  position: static;
   margin-top: 2px;
   margin-right: 5px;
   width: 50%;
@@ -43,14 +43,14 @@
 
 .topnav {
     overflow: hidden;
-    position: sticky;
+    position: static;
     width: 100%;
     padding: 100px 50px;
   }
 
 
   .topnav a {
-    position: sticky;
+    position: static;
     float: left;
     color: black;
     text-align: center;
@@ -64,25 +64,28 @@
   
   
   .topnav a.logo {
-    position: sticky;
+    position: static;
     font-size: 25px;
     font-weight: bold;
   }
   .topnav--right {
-    position: sticky;
+    position: static;
+    left: 80%;
     text-align: right;
   }
   
 
   .topnav a:hover {
-    position: sticky;
+    position: static;
     background-color: #ddd;
     color: black;
   }
   
 
   .topnav a.active {
-    position: sticky;
+    position: static;
+    left: 90%;
+    top: 11%;
     background-color: #0455BF;
     color: white;
   }
@@ -97,14 +100,14 @@
   }
   
   .topnav-center {
-    position: sticky;
+    position: static;
     float: center;
     margin: auto;
     width: 11%;
   }
 
   .topnav-right {
-    position: sticky;
+    position: static;
     float: right;
     
   }
@@ -125,7 +128,7 @@
 /* search */
 
   .searchBar {
-    position: sticky;
+    position: fixed;
     width: 40%;
     float: right;
     display: flex;
@@ -134,9 +137,10 @@
   }
   
   #searchQueryInput {
-    position: sticky;
-    width: 100%;
-    margin-top: -40px;
+    position: fixed;
+    width: 40%;
+    left: 30%;
+    top: 9.25%;
     height: 2.2rem;
     background: #ffffff;
     outline: none;
@@ -147,10 +151,11 @@
   }
   
   #searchQuerySubmit {
-    position: sticky;
+    position: fixed;
+    left: 70%;
+    top: 7.75%;
     width: 4.5rem;
     height: 3.8rem;
-    margin-top: -37px;
     margin-left: -3.5rem;
     background: none;
     border: none;

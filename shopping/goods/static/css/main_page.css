@@ -8,19 +8,17 @@ body{
 
 .person {
     display: block;
-    margin-top: 0;
-    top: 100;
-    left: 500;
+    position: fixed;
+    top: 36%;
+    left: 60%;
   }
 .person img{
-    width: 40%;
+    width: 80%;
     height: auto;
 }
 
 .NOMONEY {
-    position: relative;
-    margin-top: 0px;
-    margin-left: 0px;
+    position: fixed;
     font-family: "Inter", sans-serif;
     font-weight: 900;
     font-size: 40px;
@@ -30,16 +28,13 @@ body{
     color: #0455BF;
     width: 672px;
     height: 60px;
-    top: 100px;
-    left: 151px;
+    top: 26%;
+    left: 15%;
   
   }
 
 .NOPROBLEM {
-    position: relative;
-    margin-top: 0px;
-    margin-left: -10px;
-    margin-right: 50px;
+    position: fixed;
     font-family: "Inter", sans-serif;
     font-weight: 700;
     height: 48px;
@@ -48,20 +43,39 @@ body{
     line-height: 35px;
     letter-spacing: 0em;
     text-align: right;
-    top: 110px;
-    left: 150px;
+    top: 30%;
+    left: 48%;
 
 }
 
 .quote {
-    position: relative;
-    margin-right: 50px;
+    position: fixed;
     font-family: "Inter", sans-serif;
     font-weight: normal;
-    top: 140px;
-    left: 155px;
+    top: 40%;
+    left: 15%;
+
 }
 .quote h3{
     font-size: 25px;
     margin-bottom: 20px;
+}
+.link-shop{
+    position: fixed;
+    font-family: "Inter", sans-serif;
+    font-weight: 900;
+    top: 600px;
+    left: 205px;
+}
+.link-shop p{
+    font-size: 30px;
+    top: 200px;
+    right: 200px;
+}
+.link-shop a{
+    background-color: #0455BF;
+    color: white;
+    font-size: 30px;
+    margin-left: 210px;
+    margin-top: -32px;
 }
