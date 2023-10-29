@@ -32,10 +32,12 @@ def searched(request):
         keyword = request.POST.get('textfield', None)
         try:
             mygoods = Goods.objects.filter(goodsname__contains = keyword)
+            count = len(mygoods)
             template = loader.get_template('searched.html')
             context = {
                 'mygoods': mygoods,
                 'keyword': keyword,
+                'count':count,
             }
             return HttpResponse(template.render(context, request))
         except Goods.DoesNotExist:

@@ -14,12 +14,20 @@
                 <div class="inter-font-thick">
                     <a href="/"><img src="{% static 'nomoney logo.png' %}" class="logo" style="width:270px;height:75px;"></a>
                         <div class="topnav-right">
-                            <a href="{% url 'productlist' %}">PRODUCTS</a>
-                            <a class="active-white" href="{% url 'cart_detail' %}"> <img src="{% static 'shopping cart icon.png' %}" style="float:left;width:23px;height:20px;" class="center">Shopping Cart</a>
-                            {% if user.is_authenticated %}
-                
-                                <a style="margin-right: 9px;font-weight: normal">Hi {{ user.username }}!</a>
+                            <!-- all product -->
+                            <a href="{% url 'productlist' %}">All product</a>
 
+                            <!-- order details (superuser and staff only) -->
+                            {% if user.is_superuser or user.is_staff %}
+                                <a href="{% url 'ordered_list' %}" style="margin-right: 7px;">Order Details</a>
+                            {% endif %}
+
+                            <!-- shopping cart -->
+                            <a class="active-white" href="{% url 'cart_detail' %}"> <img src="{% static 'shopping cart icon.png' %}" style="float:left;width:23px;height:20px;" class="center">Shopping Cart</a>
+                            
+                            <!-- log-in -->
+                            {% if user.is_authenticated %}
+                                <a style="margin-right: 9px;font-weight: normal">Hi {{ user.username }}!</a>
                                 <a class="active" href="{% url 'logout' %}">LOGOUT</a>
                             {% else %}
                                 <a class="active" href="{% url 'login' %}">LOGIN</a>

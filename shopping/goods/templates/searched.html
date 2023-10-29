@@ -13,10 +13,10 @@
     <form method="POST" action="{% url 'filter' %}">
         {% csrf_token %}
         <!-- filtermin -->
-        <input type="number" name="min" value={{filtermin}}>
-        <input type="number" name="max" value={{filtermax}}>
+        <a>Price range</a>
+        <input type="number" name="min" value={{filtermin}}> - <input type="number" name="max" value={{filtermax}}>
         <!-- sort -->
-        <label for="cars">Sort by:</label>
+        <label for="sortby">Sort by:</label>
             <select name="sort" id="sorttype">
                 <option value="nameasc">A - Z</option>
                 <option value="namedsc">Z - A</option>
@@ -27,9 +27,17 @@
         <input type="submit" formmethod="GET" value="Reset">
     </form>
 
+    <!-- search results -->
+    <p>search "{{ keyword }}"</p>
+    {% if count == 0 or count == 1 %}
+        <p>{{ count }} item</p>
+    {% else %}
+        <p>{{ count }} items</p>
+    {% endif %}
+
     <ul>
         {% for x in mygoods %}
-            <li> <img src="{{ x.image.path }}" alt="{{ x.goodsname }}" width="100"> <a href="{% url 'details' x.id %}">{{ x.goodsname }}</a> 💡{{ x.price }}</li>
+        <li> <a href="{% url 'details' x.id %}"> <img src="{{ x.image.url }}" alt="{{ x.goodsname }}" width="100"> {{ x.goodsname }} 💡{{ x.price }} </a> </li>
         {% endfor %}
     </ul>
   
