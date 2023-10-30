@@ -1,12 +1,14 @@
 {% extends "master.html" %}
-
+{% load static %}
 {% block title %}
     Product details
 {% endblock %}
 
 {% block content %}
-
-    <h1>{{ goods.goodsname }}</h1>
+    <link rel="stylesheet", href="{% static 'css/product_detail.css' %}">
+    <div class="name_product">
+        <h1>{{ goods.goodsname }}</h1>
+    </div>
 
     <img src="{{ goods.image.url }}" alt="{{ goods.goodsname }}" width="200">
 
