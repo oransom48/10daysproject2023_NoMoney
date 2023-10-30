@@ -1,11 +1,11 @@
 .name_product{
-    position: fixed;
-    top: 14%;
-    left: 27%;
+    position: static;
+    text-align: center;
+    margin-top: -5%;
     font-family: "Inter", sans-serif;
 }
 .product_detail_pic{
-    margin-top: 5%;
+    margin-top: 2%;
     text-align: center;
 }
 .text_price{

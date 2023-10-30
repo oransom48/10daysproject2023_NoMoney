@@ -4,10 +4,10 @@
     Product details
 {% endblock %}
 
-{% block content %}
+{% block body %}
     <link rel="stylesheet", href="{% static 'css/product_detail.css' %}">
     <div class="name_product">
-        <h1>{{ goods.goodsname }}</h1>
+        <h1><b>{{ goods.goodsname }}</b></h1>
     </div>
     <div class="product_detail_pic">
         <img src="{{ goods.image.url }}" alt="{{ goods.goodsname }}" width="400">
@@ -23,7 +23,7 @@
     </form>
 
     <div class="text_detail">
-        <h3>product details</h3>
+        <h3><b>Product Details</b></h3>
         <p>{{ goods.description }}</p>
     </div>
 
