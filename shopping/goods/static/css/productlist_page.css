@@ -1,3 +1,9 @@
+.product-tools{
+    margin-top: -10%;
+    margin-left: 5%;
+    text-align: left;
+}
+
 .label{
     position: static;
     margin-left: 31%;
@@ -32,6 +38,7 @@
 
 .list-product{
     position: static; 
+    margin-top: auto;
     text-align: center;
     font-family: "Inter", sans-serif;
     font-weight: normal;
@@ -70,7 +77,7 @@
 .reset{
     position: static;
     margin-left: 47%;
-    margin-top: -1.5%;
+    margin-top: -1.3%;
 }
 
 .submit-searched{

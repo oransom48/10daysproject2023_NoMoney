@@ -63,16 +63,9 @@ def filter(request):
     tempmin = 0
     tempmax = float("inf")
 
-    # checkfilter
-    if not (filtermin or filtermax):
-        tempmin = 0
-        tempmax = float("inf")
-    elif not filtermin:
+    if filtermin:
         tempmin = filtermin
-    elif not filtermax:
-        tempmax = filtermax
-    else:
-        tempmin = filtermin
+    if filtermax:
         tempmax = filtermax
 
     # checksort

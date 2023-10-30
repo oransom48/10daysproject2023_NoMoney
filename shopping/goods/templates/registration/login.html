@@ -1,8 +1,7 @@
 {% extends "master.html" %}
 
-{% load static %}
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
-<link rel="stylesheet" , href="{% static 'css/login.css' %}">
+<!-- {% load static %} -->
+<!-- <link rel="stylesheet" , href="{% static 'css/login.css' %}"> -->
 
 {% block title %}
     NoMoney shop
@@ -17,4 +16,5 @@
         <button type="submit">Log In</button>
     </form>
     <p>New? <a href="{% url 'signup' %}">Create an account</a></p>
+    
 {% endblock %}
