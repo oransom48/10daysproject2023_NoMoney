@@ -4,6 +4,10 @@
     text-align: left;
 }
 
+.product-button {
+    text-decoration: none;
+}
+
 .label{
     position: static;
     margin-left: 31%;
