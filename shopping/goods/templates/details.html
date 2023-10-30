@@ -10,17 +10,21 @@
         <h1>{{ goods.goodsname }}</h1>
     </div>
     <div class="product_detail_pic">
-        <img src="{{ goods.image.url }}" alt="{{ goods.goodsname }}" width="200">
+        <img src="{{ goods.image.url }}" alt="{{ goods.goodsname }}" width="400">
     </div>
-    <h2>💡{{ goods.price }}</h2>
+    <div class="text_price">
+        <h2>💡{{ goods.price }}</h2>
+    </div>
 
-    <form method="post" action="{% url 'add_to_cart' goods.id %}">
+    <form method="post" action="{% url 'add_to_cart' goods.id %}" style="text-align: center;">
         {% csrf_token %}
-        <input type="number" name="integerfield" min="0" value= {{cart_item.quantity}}>
+        <input id="input_amount" type="number" name="integerfield" min="0" value= {{cart_item.quantity}}>
         <input type="submit" value="ADD TO CART">
     </form>
 
-    <h3>product details</h3>
-    <p>{{ goods.description }}</p>
+    <div class="text_detail">
+        <h3>product details</h3>
+        <p>{{ goods.description }}</p>
+    </div>
 
 {% endblock %}
