@@ -75,12 +75,12 @@
   }
   
 
-  .topnav a:hover {
+  .topnav-right a:hover {
     position: static;
     background-color: #ddd;
     color: black;
   }
-  
+
 
   .topnav a.active {
     position: static;

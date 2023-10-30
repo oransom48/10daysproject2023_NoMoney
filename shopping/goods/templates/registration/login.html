@@ -1,11 +1,15 @@
 {% extends "master.html" %}
 
+{% load static %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter">
+<link rel="stylesheet" , href="{% static 'css/login.css' %}">
+
 {% block title %}
     NoMoney shop
 {% endblock %}
 
 
-{% block content %}
+{% block login %}
     <h2>Log In</h2>
     <form method="post">
         {% csrf_token %}

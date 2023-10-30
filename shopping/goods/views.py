@@ -152,6 +152,7 @@ def remove_from_cart(request, item_id):
     return redirect("cart_detail")
 
 
+@login_required
 def cart_detail(request):
     cart_items = Cart.objects.filter(user=request.user)
     count = len(cart_items)
