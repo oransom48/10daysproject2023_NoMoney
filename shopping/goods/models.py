@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 
+
 class Goods(models.Model):
     image = models.ImageField(upload_to='image')
     goodsname = models.CharField(max_length=255)
@@ -11,6 +12,7 @@ class Goods(models.Model):
     def __str__(self):
         return f"{self.goodsname}"
 
+
 class Cart(models.Model):
     image = models.ImageField(upload_to='image')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -18,7 +20,7 @@ class Cart(models.Model):
     product_name = models.CharField(max_length=255, null=True)
     price = models.FloatField(null=True)
     quantity = models.IntegerField(null=True)
-    sum_price = models.FloatField(null=True) 
+    sum_price = models.FloatField(null=True)
     # I added this column because first I want price * quantity, but it couldn't. And I don't know why? Maybe Float can't * with Integer
 
     def __str__(self):
@@ -29,6 +31,8 @@ class Cart(models.Model):
 
 # for ordered page
 # I use ManyToMany Relationship, which likes Composition (or Aggregation? I'm not sure) in OOP.
+
+
 class Product(models.Model):
     image = models.ImageField(upload_to='image')
     product_id = models.IntegerField(null=True)
@@ -40,14 +44,15 @@ class Product(models.Model):
     def __str__(self):
         return f"{self.quantity} x {self.product_name}"
 
+
 class Ordered(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    #Cart
+    # Cart
     products = models.ManyToManyField(Product)
     total_price = models.FloatField(null=True)
 
-    #Additional information
+    # Additional information
     firstname = models.CharField(max_length=31, null=True)
     lastname = models.CharField(max_length=31, null=True)
     address = models.CharField(max_length=255, null=True)

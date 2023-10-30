@@ -10,14 +10,18 @@ from django.views import generic
 from django.urls import path, reverse_lazy
 from .models import Goods, Cart, Product, Ordered
 
+
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
 
 # main page
+
+
 def main(request):
     return render(request, 'main.html')
+
 
 def productlist(request):
     mygoods = Goods.objects.all()
@@ -27,69 +31,77 @@ def productlist(request):
     }
     return HttpResponse(template.render(context, request))
 
+
 def searched(request):
-    if request.method == 'POST':
-        keyword = request.POST.get('textfield', None)
-        try:
-            mygoods = Goods.objects.filter(goodsname__contains = keyword)
-            count = len(mygoods)
-            template = loader.get_template('searched.html')
-            context = {
-                'mygoods': mygoods,
-                'keyword': keyword,
-                'count':count,
-            }
-            return HttpResponse(template.render(context, request))
-        except Goods.DoesNotExist:
-            return HttpResponse("no such user")  
-    else:
+    if request.method != 'POST':
         return render(request, 'master.html')
 
-def filter(request):
-    if request.method == 'POST':
-        filtermin = request.POST.get('min')
-        filtermax = request.POST.get('max')
-        sort = request.POST.get('sort')
-        mygoods = Goods.objects.all()
-
-        tempmin = 0
-        tempmax = 9999999999
-
-        # checkfilter
-        if filtermin=='' and filtermax=='':
-            tempmin = 0
-            tempmax = 9999999999
-        elif filtermin=='':
-            tempmin = filtermin
-        elif filtermax=='':
-            tempmax = filtermax
-        else:
-            tempmin = filtermin
-            tempmax = filtermax
-
-        # checksort
-        if sort=='nameasc':
-            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('goodsname')
-        elif sort=='namedsc':
-            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('-goodsname')
-        elif sort=='priceasc':
-            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('price')
-        elif sort=='pricedsc':
-            mygoods = Goods.objects.filter(price__range=(tempmin, tempmax)).order_by('-price')
-
-        template = loader.get_template('productlist.html')
+    keyword = request.POST.get('textfield', None)
+    try:
+        mygoods = Goods.objects.filter(goodsname__contains=keyword)
+        count = len(mygoods)
+        template = loader.get_template('searched.html')
         context = {
             'mygoods': mygoods,
-            'filtermin':filtermin,
-            'filtermax':filtermax,
+            'keyword': keyword,
+            'count': count,
         }
         return HttpResponse(template.render(context, request))
-    else:
+    except Goods.DoesNotExist:
+        return HttpResponse("no such user")
+
+
+def filter(request):
+    if request.method != 'POST':
         return redirect("productlist")
+
+    filtermin = request.POST.get('min')
+    filtermax = request.POST.get('max')
+    sort = request.POST.get('sort')
+    mygoods = Goods.objects.all()
+
+    tempmin = 0
+    tempmax = float("inf")
+
+    # checkfilter
+    if not (filtermin or filtermax):
+        tempmin = 0
+        tempmax = float("inf")
+    elif not filtermin:
+        tempmin = filtermin
+    elif not filtermax:
+        tempmax = filtermax
+    else:
+        tempmin = filtermin
+        tempmax = filtermax
+
+    # checksort
+    if sort == 'nameasc':
+        mygoods = Goods.objects.filter(price__range=(
+            tempmin, tempmax)).order_by('goodsname')
+    elif sort == 'namedsc':
+        mygoods = Goods.objects.filter(price__range=(
+            tempmin, tempmax)).order_by('-goodsname')
+    elif sort == 'priceasc':
+        mygoods = Goods.objects.filter(
+            price__range=(tempmin, tempmax)).order_by('price')
+    elif sort == 'pricedsc':
+        mygoods = Goods.objects.filter(
+            price__range=(tempmin, tempmax)).order_by('-price')
+
+    template = loader.get_template('productlist.html')
+    context = {
+        'mygoods': mygoods,
+        'filtermin': filtermin,
+        'filtermax': filtermax,
+    }
+    return HttpResponse(template.render(context, request))
+
 
 def details(request, product_id):
     goods = Goods.objects.get(id=product_id)
-    cart_item = Cart.objects.filter(user=request.user, product_id=product_id).first()
+    cart_item = Cart.objects.filter(
+        user=request.user, product_id=product_id).first()
     context = {
         "goods": goods,
         "cart_item": cart_item,
@@ -97,15 +109,18 @@ def details(request, product_id):
     return render(request, "details.html", context)
 
 # cart
+
+
 @login_required
 def add_to_cart(request, product_id):
-    cart_item = Cart.objects.filter(user=request.user, product_id=product_id).first()
+    cart_item = Cart.objects.filter(
+        user=request.user, product_id=product_id).first()
     product_price = Goods.objects.get(id=product_id).price
-    
+
     if request.method == "POST":
         amount = request.POST.get('integerfield')
         amount = float(amount)
-        if amount == 0:
+        if not amount:
             return redirect("remove_from_cart", product_id)
         elif cart_item:
             cart_item.quantity = amount
@@ -117,14 +132,15 @@ def add_to_cart(request, product_id):
             image = Goods.objects.get(id=product_id).image
             Cart.objects.create(user=request.user,
                                 image=image,
-                                product_id=product_id, 
+                                product_id=product_id,
                                 product_name=product_name,
-                                price=product_price, 
-                                quantity=amount, 
+                                price=product_price,
+                                quantity=amount,
                                 sum_price=amount*product_price)
             messages.success(request, "Item added to your cart.")
 
     return redirect("productlist")
+
 
 @login_required
 def remove_from_cart(request, item_id):
@@ -135,6 +151,7 @@ def remove_from_cart(request, item_id):
 
     return redirect("cart_detail")
 
+
 def cart_detail(request):
     cart_items = Cart.objects.filter(user=request.user)
     count = len(cart_items)
@@ -143,7 +160,7 @@ def cart_detail(request):
     context = {
         "cart_items": cart_items,
         "total_price": total_price,
-        'count':count,
+        'count': count,
     }
 
     return render(request, "cart/cart_detail.html", context)
@@ -162,22 +179,23 @@ def save_order(request):
         tel = request.POST.get('tel')
 
         this_order = Ordered(user=request.user,
-                            firstname=firstname,
-                            lastname=lastname,
-                            address=address,
-                            tel=tel,
-                            total_price=total_price,
-                            )
+                             firstname=firstname,
+                             lastname=lastname,
+                             address=address,
+                             tel=tel,
+                             total_price=total_price,
+                             )
         this_order.save()
         for item in in_cart:
             this_order.products.create(image=item.image,
-                                        product_id=item.product_id, 
-                                        product_name=item.product_name,
-                                        price=item.price, 
-                                        quantity=item.quantity, 
-                                        sum_price=item.sum_price)
-           
+                                       product_id=item.product_id,
+                                       product_name=item.product_name,
+                                       price=item.price,
+                                       quantity=item.quantity,
+                                       sum_price=item.sum_price)
+
     return redirect("payment")
+
 
 def order_summary(request):
     cart_items = Cart.objects.filter(user=request.user)
@@ -191,6 +209,8 @@ def order_summary(request):
     return render(request, "cart/order_summary.html", context)
 
 # payment
+
+
 def payment(request):
     cart_items = Cart.objects.filter(user=request.user)
     total_price = sum(item.quantity * item.price for item in cart_items)
@@ -204,11 +224,13 @@ def payment(request):
 
     # clear cart
     cart_item = Cart.objects.filter(user=request.user)
-    cart_item.delete()  
+    cart_item.delete()
 
     return HttpResponse(template.render(context, request))
 
 # (dashboard) ordered page
+
+
 @staff_member_required
 def ordered_list(request):
     orders = Ordered.objects.all()
@@ -219,6 +241,7 @@ def ordered_list(request):
         # 'product_order': product_order,
     }
     return HttpResponse(template.render(context, request))
+
 
 @staff_member_required
 def order_detail(request, ordered):
