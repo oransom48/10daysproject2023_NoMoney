@@ -1,5 +1,8 @@
 /* font */
-
+/* * {
+  filter: invert(100%) hue-rotate(180deg);
+  width: auto;
+}  */
 
 .inter-font-thick {
     font-family: "Inter", sans-serif;
@@ -12,7 +15,10 @@
 }
 
 
-
+.table{
+  font-family: "Inter", sans-serif;
+  font-weight: normal;
+}
 
 /* /font */
 * {
@@ -84,6 +90,8 @@
 
   .topnav a.active {
     position: static;
+    font-family: "Inter", sans-serif;
+    font-weight: normal;
     margin-left: 5px;
     left: 93%;
     top: 11%;

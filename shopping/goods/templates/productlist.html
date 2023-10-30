@@ -5,6 +5,7 @@
 {% endblock %}
 
 
+
 {% block body %}
     <link rel="stylesheet", href="{% static 'css/productlist_page.css' %}">
 
@@ -44,15 +45,15 @@
                     <div class="list-product">
                         <img src="{{ x.image.url }}" alt="{{ x.goodsname }}" width="200px" style="margin-top: 10px;"> 
                     </div>
-                    <div class="name-product">
-                            <h2 class="active" style="margin-top: 12px;">{{ x.goodsname }}</h2> 
-                    </div>
+                        <div class="name-product">
+                            <h2 class="active" style="margin-top: 12px;font-family: Inter, sans-serif;
+                            font-weight: 900;">{{ x.goodsname }}</h2>  
+                        </div>
                     <div class="price">
                             <h3 style="margin-top: 1px; text-align: center;"> 💡{{ x.price }} </h3>
                     </div>
                 </a>
             </div>
-            
         {% endfor %}
     </ul>
 

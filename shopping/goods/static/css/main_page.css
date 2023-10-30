@@ -2,6 +2,7 @@ body{
     position: relative;
     background-image: rgb(217,217,217);
     background-image: linear-gradient(180deg, rgba(217,217,217,1) 0%, rgba(190,204,255,1) 100%);
+    /* filter: invert(100%) hue-rotate(180deg); */
 }
 
 
@@ -76,6 +77,6 @@ body{
     background-color: #0455BF;
     color: white;
     font-size: 30px;
-    margin-left: 210px;
+    margin-left: 220px;
     margin-top: -32px;
 }

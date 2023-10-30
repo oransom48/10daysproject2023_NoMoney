@@ -5,49 +5,66 @@
 {% endblock %}
 
 
-{% block content %}
+{% block body %}
     <link rel="stylesheet", href="{% static 'css/productlist_page.css' %}">
 
-    <div class="text-product-list">
-        <h3>Product List</h3>
-    </div>
-
-    <form method="POST" action="{% url 'filter' %}">
-        {% csrf_token %}
-        <!-- filtermin -->
+    <div class="product-tools">
         <div class="text-product-list">
-            <h3>Price range</h3>
+            <h3>Product List</h3>
         </div>
-        <input id="minQueryInput" type="number" name="min" placeholder="Min" value={{filtermin}}> - <input id="maxQueryInput" type="number" name="max" placeholder="Max" value={{filtermax}}>
-        <!-- sort -->
-        <div class="label-searched">
-            <label for="sortby">Sort by:</label>
-                <select name="sort" id="sorttype">
+        
+        <form method="POST" action="{% url 'filter' %}">
+            {% csrf_token %}
+            <!-- filtermin -->
+            <input id="minQueryInput" type="number" name="min" placeholder="Min: -" value={{filtermin}}>
+            <input id="maxQueryInput" type="number" name="max" placeholder="Max: -" value={{filtermax}}>
+            <!-- sort -->
+            <div class="label">
+                <label for="sortby"><b>Sort by:</b></label>
+                <select name="sort" id="sorttype" value={{sort}}>
                     <option value="nameasc">A - Z</option>
                     <option value="namedsc">Z - A</option>
                     <option value="priceasc">lowest price</option>
                     <option value="pricedsc">highest price</option>
                 </select>
-        </div>
-        <div class="submit-searched">
-            <button type="submit">Search</button>
-        </div>
-        <div class="reset-searched">
-            <input type="submit" formmethod="GET" value="Reset">
-        </div>
-    </form>
+            </div>
+            <div class="submit">
+                <button type="submit">Search</button>
+            </div>
+            <div class="reset">
+                <input type="submit" formmethod="GET" value="Reset">
+            </div>
+        </form>
+    </div>
 
     <!-- search results -->
+    <div class="table">
     <p>search "{{ keyword }}"</p>
     {% if count == 0 or count == 1 %}
         <p>{{ count }} item</p>
     {% else %}
         <p>{{ count }} items</p>
     {% endif %}
+    </div>
 
     <ul>
         {% for x in mygoods %}
-        <li> <a href="{% url 'details' x.id %}"> <img src="{{ x.image.url }}" alt="{{ x.goodsname }}" width="100"> {{ x.goodsname }} 💡{{ x.price }} </a> </li>
+        <div class="product-button">
+            <div class="title">
+                <a href="{% url 'details' x.id %}" class="product-button">
+                    <div class="list-product">
+                        <img src="{{ x.image.url }}" alt="{{ x.goodsname }}" width="200px" style="margin-top: 10px;"> 
+                    </div>
+                    <div class="name-product">
+                            <h2 class="active" style="margin-top: 12px;font-family: Inter, sans-serif;
+                            font-weight: 900;">{{ x.goodsname }}</h2> 
+                    </div>
+                    <div class="price">
+                            <h3 style="margin-top: 1px; text-align: center;"> 💡{{ x.price }} </h3>
+                    </div>
+                </a>
+            </div>
+        </div>
         {% endfor %}
     </ul>
   

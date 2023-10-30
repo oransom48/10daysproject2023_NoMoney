@@ -23,7 +23,7 @@
                     <td><a href="{% url 'details' item.product_id %}"><img src="{{ item.image.url }}" alt="{{ item.goodsname }}" width="100"></a></td>
                     <td>{{ item.product_name }}</td>
                     <td>💡{{ item.price }}</td>
-                    <td>{{ item.quantity }}</td>
+                    <td style="text-align: center;">{{ item.quantity }}</td>
                     <td>💡{{ item.sum_price }}</td>
                     <td><a href="{% url 'details' item.product_id %}">Change Amount</a></td>
                     <td><a href="{% url 'remove_from_cart' item.product_id %}">Remove</a></td>
