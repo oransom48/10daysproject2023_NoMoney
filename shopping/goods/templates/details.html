@@ -9,9 +9,9 @@
     <div class="name_product">
         <h1>{{ goods.goodsname }}</h1>
     </div>
-
-    <img src="{{ goods.image.url }}" alt="{{ goods.goodsname }}" width="200">
-
+    <div class="product_detail_pic">
+        <img src="{{ goods.image.url }}" alt="{{ goods.goodsname }}" width="200">
+    </div>
     <h2>💡{{ goods.price }}</h2>
 
     <form method="post" action="{% url 'add_to_cart' goods.id %}">

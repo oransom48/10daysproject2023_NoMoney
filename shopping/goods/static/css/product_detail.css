@@ -1,4 +1,7 @@
 .name_product{
-    text-align: center;
+    margin-left: center;
     font-family: "Inter", sans-serif;
+}
+.product_detail_pic{
+    text-align: center;
 }
